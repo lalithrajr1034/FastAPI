@@ -1,4 +1,6 @@
-from fastapi import FastAPI, Path
+from fastapi import FastAPI, Path, Query
+from data import Data
+
 
 app = FastAPI()
 
@@ -6,10 +8,12 @@ app = FastAPI()
 def hi():
     return 'hi'
 
-@app.get("/aa/{value}")
-def hello(value:int = Path(...,title='this is title', gt = 0)):
-    return value
-
-@app.get("/products")
-def products(limit: int):
-    return {"limit": limit}
+@app.get("/product_search/{p_id}")
+def hello(p_id:int = Path(...,description='this is product id', example=10, gt = 0)):
+    data = Data()
+    
+    for product in data:
+        if product['id'] == p_id:
+            return product
+    if True:
+        return {'mesage' :'product is not there'}
