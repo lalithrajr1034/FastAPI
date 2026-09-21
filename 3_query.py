@@ -5,6 +5,7 @@ from data import Data
 app = FastAPI()
 dataset = Data()
 
+
 # Validates input: checks values in the URL (e.g. limit between 1 and 100, search text at least 3 characters)
 # Protects the server: blocks bad or huge requests automatically with a 422 error
 # Saves code: no need to write manual if checks
